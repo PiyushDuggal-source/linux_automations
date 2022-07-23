@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 
-exec("wmctrl -l", (error, stdout, stderr) => {
+exec("wmctrl -l && hostname", (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
     return;
@@ -10,13 +10,14 @@ exec("wmctrl -l", (error, stdout, stderr) => {
     return;
   }
   const arr = stdout.split(" ");
+  const name = arr.pop();
+  const nameArr = name?.split("\n") || [];
   let windows: string[] = [];
   arr.forEach((ele, index) => {
-    if (ele === "null") {
+    if (ele === nameArr[1]) {
       windows.push(arr[index + 1]);
     }
   });
-  console.log(windows);
 
   windows.forEach((window: string) => {
     exec(`wmctrl -a ${window}`);
