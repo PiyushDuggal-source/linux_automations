@@ -11,17 +11,17 @@ var child_process_1 = require("child_process");
         return;
     }
     var arr = stdout.split(" ");
-    console.log(arr);
-    // let windows: string[] = [];
-    // arr.forEach((ele, index) => {
-    //   if (ele === "null") {
-    //     windows.push(arr[index + 1]);
-    //   }
-    // });
-    // console.log(windows);
-    // windows.forEach((window: string) => {
-    //   exec(`wmctrl -a ${window}`);
-    //   exec(`wmctrl -c ${window}`);
-    // });
-    // exec('notify-send "All windows are closed. You can shut down the PC"');
+    var name = arr.pop();
+    var nameArr = (name === null || name === void 0 ? void 0 : name.split("\n")) || [];
+    var windows = [];
+    arr.forEach(function (ele, index) {
+        if (ele === nameArr[1]) {
+            windows.push(arr[index + 1]);
+        }
+    });
+    windows.forEach(function (window) {
+        (0, child_process_1.exec)("wmctrl -a ".concat(window));
+        (0, child_process_1.exec)("wmctrl -c ".concat(window));
+    });
+    (0, child_process_1.exec)('notify-send "All windows are closed. You can shut down the PC"');
 });
