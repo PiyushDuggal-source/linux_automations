@@ -4,7 +4,10 @@ This is automation for closing all the windows from all the workspaces, I have c
 
 `sudo apt install wmctrl`
 
+`npm install` inside the folder
+
 # Automation:
 
-Add this to you bashrc/zshrc file:
+Add this to you .bashrc/.zshrc file:
+
 `alias whateverName='cd to/the/folder/of/windowsAuto && node automation.js`
