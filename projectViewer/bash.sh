@@ -23,6 +23,11 @@
 
 found=1
 
+if [[ "$1" == "dir" ]]; then
+  project-dir
+  exit
+fi
+
 for i in ~/Piyush/Personal-Projects/Javascript/* ; 
 do
   # Extract the directory name (the last part of the path)
@@ -41,7 +46,6 @@ do
     found=0
 done
 
-echo $found
 if [[ $found -eq 0 ]]; then
   # cd and open nvim
   cd ~/Piyush/Personal-Projects/Javascript && nvim $(fzf --query "$1")

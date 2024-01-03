@@ -6,7 +6,7 @@ if [ ! -f $noteFilename ]; then
   echo "# Notes for $(date +%Y-%m-%d)" > $noteFilename
 fi
 
-gnome-terminal --geometry=63x23 -- nvim -c ":ASToggle" -c "norm Go" \
+gnome-terminal --geometry=800x600 -- nvim -c "norm Go" \
   -c "norm Go## $(date +%H:%M)" \
   -c "norm G2o" \
   -c "norm zz" \
